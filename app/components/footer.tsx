@@ -67,7 +67,7 @@ export default function Footer() {
               target="_blank"
               href="https://www.instagram.com/instadella/"
           >
-            <ImFacebook2 />
+            <FaInstagram />
           </a>
         </li>
         <li>
