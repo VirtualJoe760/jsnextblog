@@ -65,16 +65,6 @@ export default function Footer() {
               className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
               rel="noopener noreferrer"
               target="_blank"
-              href="https://www.facebook.com/alldaydella/"
-          >
-            <FaInstagram />
-          </a>
-        </li>
-        <li>
-          <a
-              className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-              rel="noopener noreferrer"
-              target="_blank"
               href="https://www.instagram.com/instadella/"
           >
             <ImFacebook2 />
