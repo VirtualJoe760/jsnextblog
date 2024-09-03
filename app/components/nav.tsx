@@ -5,10 +5,10 @@ const navItems = {
     name: 'home',
   },
   '/blog': {
-    name: 'blog',
+    name: 'news',
   },
   'https://dreambigjoe.com': {
-    name: 'dbj',
+    name: 'dream',
   },
 }
 
