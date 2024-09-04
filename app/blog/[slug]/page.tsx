@@ -23,11 +23,15 @@ export function generateMetadata({ params }) {
     publishedAt: publishedTime,
     summary: description,
     image,
-  } = post.metadata
-  let ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+  } = post.metadata;
+  let ogImage = image 
+  ? image.startsWith('http')  // Check if the image is an external URL
+    ? image                   // Use the external URL as is
+    : `${baseUrl}${image}`    // Otherwise, assume it's a local path and prepend base URL
+  : `${baseUrl}/og?title=${encodeURIComponent(title)}`  // Fallback to dynamic OG image
 
+  console.log('og image:', ogImage);
+  
   return {
     title,
     description,
@@ -59,6 +63,12 @@ export default function Blog({ params }) {
     notFound()
   }
 
+  let ogImage = post.metadata.image
+    ? post.metadata.image.startsWith('http')
+      ? post.metadata.image  // Use external URL as is
+      : `${baseUrl}${post.metadata.image}`  // Use local image with base URL prepended
+    : `/og?title=${encodeURIComponent(post.metadata.title)}`  // Fallback to dynamic OG image
+
   return (
     <section>
       <script
@@ -72,13 +82,11 @@ export default function Blog({ params }) {
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+            image: ogImage,  // Use updated OG image logic
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'My Portfolio',
+              name: 'Joseph Sardella',
             },
           }),
         }}
