@@ -11,15 +11,15 @@ import { baseUrl } from './sitemap'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Next.js Portfolio Starter',
-    template: '%s | Next.js Portfolio Starter',
+    default: 'Speak Up Joe',
+    template: '%s | Tech and Politics',
   },
-  description: 'This is my portfolio.',
+  description: 'Hi I am Joe, I write about tech and politics.',
   openGraph: {
-    title: 'My Portfolio',
-    description: 'This is my portfolio.',
+    title: 'Speak Up Joe | Tech & News',
+    description: 'Hi I am Joe, I write about tech and politics. I hope you enjoy my content. Feel free to reach out to me on my socials.',
     url: baseUrl,
-    siteName: 'My Portfolio',
+    siteName: 'speakupjoe',
     locale: 'en_US',
     type: 'website',
   },
@@ -45,7 +45,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="en_US"
       className={cx(
         'text-black bg-white dark:text-white dark:bg-black',
         GeistSans.variable,
