@@ -10,16 +10,17 @@ export async function GET(request: Request) {
     });
   }
 
-  // Use ImageResponse to ensure it has the required OG image dimensions
+  // Use ImageResponse with the thumbnail set as a background image
   return new ImageResponse(
     (
-      <img
-        src={thumbnail}
-        alt="Thumbnail"
+      <div
         style={{
           width: '100%',
           height: '100%',
-          objectFit: 'cover',
+          backgroundImage: `url(${thumbnail})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundColor: 'white', // Fallback background color
         }}
       />
     ),
