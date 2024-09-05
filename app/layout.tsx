@@ -61,7 +61,7 @@ export default function RootLayout({
         </Script>
         <Script id="google-analytics">
           {`
-            window.datalayer = window.datalayer || [];
+            window.datalayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
