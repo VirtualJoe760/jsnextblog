@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
+import Head from 'next/head'
 
 
 
@@ -71,41 +72,59 @@ export default function Blog({ params }) {
     : `/og?title=${encodeURIComponent(post.metadata.title)}`  // Fallback to dynamic OG image
   
   return (
-    <section>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
+    <>
+      <Head>
+        <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        ></script>
+        <script
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: ogImage,  // Use updated OG image logic
-            url: `${baseUrl}/blog/${post.slug}`,
-            author: {
-              '@type': 'Person',
-              name: 'Joseph Sardella',
-            },
-          }),
+          __html: `
+          window.datalayer = window.datalayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+            page_path: window.location.pathname,
+            });
+          `,
         }}
-      />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
-      </div>
-      <article className="prose">
-        <CustomMDX source={post.content} />
+       />
+      </Head>
+      <section>
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              headline: post.metadata.title,
+              datePublished: post.metadata.publishedAt,
+              dateModified: post.metadata.publishedAt,
+              description: post.metadata.summary,
+              image: ogImage,  // Use updated OG image logic
+              url: `${baseUrl}/blog/${post.slug}`,
+              author: {
+                '@type': 'Person',
+                name: 'Joseph Sardella',
+              },
+            }),
+          }}
+        />
+        <h1 className="title font-semibold text-2xl tracking-tighter">
+          {post.metadata.title}
+        </h1>
+        <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            {formatDate(post.metadata.publishedAt)}
+          </p>
+        </div>
+        <article className="prose">
+          <CustomMDX source={post.content} />
         
-
-      </article>
-    
-    </section>
+        </article>
+      </section>
+    </>
   )
 }
