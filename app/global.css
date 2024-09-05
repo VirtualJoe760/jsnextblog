@@ -148,3 +148,16 @@ table {
 .title {
   text-wrap: balance;
 }
+
+
+/* Disqus iframe background color for dark mode */
+#disqus_thread iframe {
+  background-color: transparent !important;
+  color-scheme: dark; /* Forces dark mode if needed */
+}
+
+/* Adjust Disqus container styling in dark mode */
+body.dark #disqus_thread {
+  background-color: #000000;
+  color: #ffffff;
+}

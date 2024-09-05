@@ -4,6 +4,8 @@ import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
 
 
+
+
 export async function generateStaticParams() {
   let posts = getBlogPosts()
 
@@ -30,8 +32,7 @@ export function generateMetadata({ params }) {
     : `${baseUrl}${image}`    // Otherwise, assume it's a local path and prepend base URL
   : `${baseUrl}/og?title=${encodeURIComponent(title)}`  // Fallback to dynamic OG image
 
-  console.log('og image:', ogImage);
-  
+
   return {
     title,
     description,
@@ -68,7 +69,7 @@ export default function Blog({ params }) {
       ? post.metadata.image  // Use external URL as is
       : `${baseUrl}${post.metadata.image}`  // Use local image with base URL prepended
     : `/og?title=${encodeURIComponent(post.metadata.title)}`  // Fallback to dynamic OG image
-
+  
   return (
     <section>
       <script
@@ -101,7 +102,10 @@ export default function Blog({ params }) {
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />
+        
+
       </article>
+    
     </section>
   )
 }
