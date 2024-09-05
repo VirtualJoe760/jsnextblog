@@ -2,14 +2,13 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
-import Head from 'next/head'
+
 
 
 
 
 export async function generateStaticParams() {
   let posts = getBlogPosts()
-
   return posts.map((post) => ({
     slug: post.slug,
   }))
@@ -73,24 +72,6 @@ export default function Blog({ params }) {
   
   return (
     <>
-      <Head>
-        <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        ></script>
-        <script
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.datalayer = window.datalayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-            page_path: window.location.pathname,
-            });
-          `,
-        }}
-       />
-      </Head>
       <section>
         <script
           type="application/ld+json"
