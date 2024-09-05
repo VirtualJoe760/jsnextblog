@@ -9,6 +9,7 @@ import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 import Script from 'next/script'
 
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     url: baseUrl,
     siteName: 'speakupjoe',
     locale: 'en_US',
-    type: 'website',
+    type: 'article',
   },
   robots: {
     index: true,
@@ -35,7 +36,13 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-}
+  icons: {
+    icon: [
+      { url: '/assets/images/favicon.svg', type: 'image/svg+xml' },
+      { url: '/assets/images/favicon.png', type: 'image/png' }
+    ],
+  },
+};
 
 const cx = (...classes) => classes.filter(Boolean).join(' ')
 
@@ -53,8 +60,8 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <head>
-        <Script
+      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
+      <Script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=G-HW5D5MZCMC`}
         >
@@ -67,8 +74,6 @@ export default function RootLayout({
             gtag('config', 'G-HW5D5MZCMC');
           `}
         </Script>
-      </head>
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
