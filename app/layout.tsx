@@ -56,15 +56,15 @@ export default function RootLayout({
       <head>
         <Script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-HW5D5MZCMC`}
         >
         </Script>
         <Script id="google-analytics">
           {`
-            window.datalayer = window.dataLayer || [];
+            window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+            gtag('config', 'G-HW5D5MZCMC');
           `}
         </Script>
       </head>
