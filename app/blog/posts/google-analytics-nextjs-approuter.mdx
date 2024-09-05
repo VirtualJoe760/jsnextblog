@@ -1,0 +1,64 @@
+---
+title: "How to setup Google Analytics in Nextjs(App Router)"
+publishedAt: "2024-09-04"
+summary: "A comprehensive guide on seting up Google Analytics in Nextjs App Router"
+image: "https://i.imgur.com/L6pATsi.jpeg"
+---
+
+# Google Analytics in Next 13+
+
+![Google Analytics Banner](https://i.imgur.com/Cqh6fvY.jpeg)
+[Googles Developer Console](https://developers.google.com/analytics)
+
+In Next.JS 13+ with the introduction of the app router the setup process is just a little different from previous versions. Not to worry, this guide has got you covered. 
+The main difference is going to be the use of the Script component from `next/script`. In previous versions, the code could use a traditional script tag in a `next/head` component.
+
+## A straight forward process
+
+You can find this code by creating a Google Analytics account online via Googles Developer dashboard. Simply navigate to https://developer.google.com/analytics or click on the link below the image above.
+
+![Setup Assisstant](https://i.imgur.com/37oWTaT.jpeg)
+
+Upon setting up the account you will get a modal prompting you to `Go to Setup Assistant` Create your account information, which is fairly straight forward. 
+
+Next you will create your property infromation, which is information about your website & business, as well as the business industry & size. Next you will choose the type of business objectives you wish to prioritize.
+
+At this point Google will give you options to start collecting data. For Next 13, we will choose Web as our platform. Input your weburl with out the http in the front, and your stream name is basically naming this 'data stream' which I would recommend naming after your domain.
+
+In my case I will name it Dream Big Joe. After you name your stream Google will give you your gtag which ends the online portion of the setup. Now we can proceed to our code.
+
+![Google Tag](https://i.imgur.com/0tEE7Mj.jpeg)
+
+Generally your gtag should read something like this:
+
+
+`<script async src="https://www.googletagmanager.com/gtag/js?id=G-UNIQUE-TAG"></script>`
+`<script>`
+  `window.dataLayer = window.dataLayer || [];`
+  `function gtag(){dataLayer.push(arguments);}`
+  `gtag('js', new Date());`
+
+  `gtag('config', 'UNIQUE-TAG');`
+`</script>`
+
+The code should be placed in your layout.tsx file in the app folder.
+
+`"root/app/layout.tsx"`
+
+Once you've navigated to this file you will find the `HTML` tag in the return section of the code. 
+
+Dont forget to import the script from next/script at the top of your document:
+
+`import Script from 'next/script'`
+
+![Injecting gtag](https://i.imgur.com/2PDHJl7.jpeg)
+
+After you have injected this code, You should have a working Google Analytics data stream.
+
+To test and confirm the best way is to open the console in the browser.
+
+![browser console gtag test](https://i.imgur.com/HEVq151.jpeg)
+
+Congrats, You've successfully setup google analytics! Now you are ready to go viral and be seen all over the world.
+
+If you liked this tutorial make sure to share it with your friends. Soon I will integrate a comments section into this blog and at that point would love to read your feedback.
