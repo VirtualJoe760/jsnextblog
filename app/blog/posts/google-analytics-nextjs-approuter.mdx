@@ -2,7 +2,7 @@
 title: "How to setup Google Analytics in Nextjs(App Router)"
 publishedAt: "2024-09-04"
 summary: "A comprehensive guide on seting up Google Analytics in Nextjs App Router"
-image: "https://i.imgur.com/L6pATsi.jpeg"
+image: "https://i.imgur.com/Cqh6fvY.jpeg"
 ---
 
 # Google Analytics in Next 13+
@@ -32,7 +32,12 @@ In my case I will name it Dream Big Joe. After you name your stream Google will 
 Generally your gtag should read something like this:
 
 
-`<script async src="https://www.googletagmanager.com/gtag/js?id=G-UNIQUE-TAG"></script>`
+`<script `
+
+`async`
+
+`src="https://www.googletagmanager.com/gtag/js?id=G-UNIQUE-TAG"></script>`
+
 `<script>`
   `window.dataLayer = window.dataLayer || [];`
   `function gtag(){dataLayer.push(arguments);}`
