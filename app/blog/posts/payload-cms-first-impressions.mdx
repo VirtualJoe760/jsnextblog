@@ -5,9 +5,20 @@ summary: 'After being exposed to this Open source plug in play cms I've realized
 image: 'https://payloadcms.com/images/og-image.jpg'
 ---
 
-![Payload CMS Banner](https://payloadcms.com/images/og-image.jpg)
+# Follow along with JSM & Joe in this Tutorial Video
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3JUsg-WsU9o?si=SnaEs1-REHxr4u7T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-# First Impressions
+## Expectations and prerequisites for this tutorial
+
+- HTML, CSS, Javascript
+- Nodejs
+- React
+- Nextjs
+- Tailwind CSS
+- Basic understanding of CMS
+
+
+## First Impressions
 
 Okay so after being exposed to Javascript Mastery's tutorial, I realized quickly this was the path forward for me. Between the admin dashboard & its easy setup process its a no brainer.
 However then I realized the setup process had an art to it. My ADHD brain quickly realized I need to blog the process of going through this tutorial so that I can build mastery. 
@@ -23,8 +34,93 @@ its not possible but that the headache was real. The magic is in the setup proce
 I still don't have even close to a full understanding of this CMS so I will go back to the original tutorial via JSM, since I only went through the first 26 minuets of it so far, and I'm going to rewatch the first 26 minuetse, and blog the process as I go
 from the very beginning. I'm excited to build this out. The tutorial is building an Apple inspired online ecommerce store. I will try to focus it eventually on getting fit as a gamer. I will sell products like a standing desk, and under desk treadmills, as well as computer parts and accessories.
 
-# 0:00 Nextjs Stripe Typescript Payload
+## 0:00 Nextjs Stripe Typescript Payload
 
 To give credit where credit is due, the tutorial I'm following is this: [Tutorial](https://www.youtube.com/watch?v=3JUsg-WsU9o&t=1562s)
 I would recommend checking out the video as you read along with my breakdown of the content, Adrian(JSM) does a much better job of explaining things. I will be mainly writing key points for me to remember the process.
 
+## How to start
+
+Navigate to [Payload CMS](https://payloadcms.com/) and create a free account. Payload cloud has their own hosing options however you can deploy and host through Vercel with their free tier which is what I'll be doing by the end of this tutorial.
+Select new ecommerce project, select your github account and click clone template. Payload then creates the starter template for you. Go through the configure your project.
+
+At this point you should be able to see your skeleton e-commerce site when you click on the YOUR-SITE.payloadcms.app link on the dashboard. This is the power of payload. The cart, login and authentication have been handled through Payload and hand delivered to you with scalability that reaches to enterprise levels.
+![Game Gains Payload CMS](https://i.imgur.com/RRatWR4.jpeg)
+
+Navigate to your github repository and clone the repository to your projects folder.
+
+`git clone https://github.com/YOUR-ACCOUNT/YOUR-REPOSITORY.git`
+
+CD into your project then return
+
+`npm install --legacy-peer-deps`
+
+This is needed to install some legacy dependencies.
+
+## Refer back to the README.md
+
+Below is pasted directly from the Readme, It's 
+
+*This is the official Payload E-Commerce Template. Use it to power e-commerce businesses and online stores of all sizes. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.*
+
+*This template is right for you if you are selling:*
+
+- *Physical products like clothing or merchandise*
+- *Digital assets like ebooks or videos*
+- *Access to content like courses or premium articles*
+
+# How it works
+
+It's important to understand the different elements of the source code and how the template gives you the framework you need to setup and run your business.
+
+1. Collections
+    - Users(Authentication)
+    - Products
+    - Orders
+    - Pages
+    - Media
+    - Categories
+2. Globals
+    - Header
+    - Footer
+3. Access Control
+    - Admin
+    - Customer
+    - Users
+    - Products
+4. Shopping cart
+5. Stripe
+    - Webhooks
+    - Payload Hooks
+    - Connection
+6. Checkout
+    - Custom API Endpoint
+7. Paywall
+    - Product Restriction
+8. Layout Builder
+    - Hero
+    - Content
+    - Media
+    - Call To Action
+    - Archive
+9. Draft Preview
+10. SEO
+    - Payload SEO Plugin
+11. Redirects
+    - Migrating Existing Sites
+12. Website
+    - Front End Template
+    - Nextjs App Router
+    - Custom Server Support
+    - Third party hosting
+    - Cache
+    - Eject
+    - Much more..
+13. Development
+    - Docker
+    - Seed
+    - Conflicting Routes
+14. Production
+    - Deployment
+
+At this point in the video you should be atleast to 12:35. To Continue this tutorial, visit our [Next Post](https://speakupjoe.com/blog/payload-cms-tutorial-part-2)

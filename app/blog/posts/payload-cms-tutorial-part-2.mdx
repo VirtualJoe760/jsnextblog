@@ -1,0 +1,27 @@
+---
+title: 'Payload CMS: JSM & Joe Tutorial Part 2'
+publishedAt: '2024-09-06'
+summary: 'After being exposed to this Open source plug in play cms I've realized that this is the only way to go for my ecommerce & blog solutions in the future. Here I will be documenting my setup process and building out a small Ecommerce store while watching the Javascript Mastery Tutorial.'
+image: 'https://payloadcms.com/images/og-image.jpg'
+---
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3JUsg-WsU9o?si=W8dyhVxFdQT80FfN&amp;start=755" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+To watch part one [Click Here](https://speakupjoe.com/blog/payload-cms-first-impressions).
+
+## Continuing where we left off..
+
+After the dependencies have been installed, before we run our development server. Go into the .env.example file, copy and paste the variables into your own .env file created at the root of your project.
+
+We will append the following variables:
+
+- `DATABASE_URI=`
+- `STRIPE_SECRET_KEY=`
+- `STRIPE_WEBHOOK_SIGNING_SECRET=`
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=`
+- `NEXT_PUBLIC_IS_LIVE=`
+
+Right now we will access our Database URI via your payload project and navigating to the Database tab inbetween Overview and File storage as shown below.
+
+![Database URI SS](https://i.imgur.com/izgmPDa.jpeg)
+
+Delete the data attached to those variables and we will append them at a later time.
+
