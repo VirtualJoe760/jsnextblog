@@ -62,3 +62,207 @@ you can see the beautiful hero image and products, with their pages if you scrol
 As you click around you might notice the website feels a little slow, this is just in development. Your products, cart and database are ready to roll. Payment will not work until we setup stripe which is coming soon.
 
 Now in part three we will be setting up the codebase and continuing on our journey with Payload CMS.
+
+## Code base
+
+Within `src/app` is where the majority of the application app is. This is where we will be working for the majority of the project.
+
+Then the `src/payload` is where we can modify the admin ui/interface. The most important file is going to be the file titled:
+
+`payload.config.ts`
+
+This is where all the routes that exist on our admin dashboard.
+
+- Collections
+- Endpoints
+- Seed
+
+Just to name a few. Another imporant file is going to be `payload-types.ts` which is where all the types for our products will be. This is relevant because if we go to modify our products, they will need to be modified in here as well.
+
+Turn your attention to the API folder in `src/app/api` which is where our ecommerce endpoint functionality exists.
+
+# Modifying Styles
+
+Navigate to:
+
+`src/app/css/app.scss`
+
+Firstly we will handle changing the font. For this project we will use a font called Jost. In the root we will change our variables to look like this:
+
+```
+:root {
+ --font-body: 'Jost', sans-serif;
+ --font-jost: 'Jost', sans-serif;
+}
+```
+*Note: I'm only showing code that is changing, not the entire code for `:root` this will be standard going forward.*
+
+Next we will modify our body to add something called CSS Reset. CSS reset is when we remove styling that has been automatically applied by the browser.
+Some common styles in the body would be Margin and Padding. Also we will create our `.main` class which will be helpful with creating our layout in the future.
+
+
+```
+body {
+  font-family: var(--font-jost);
+  margin: 0;
+  padding: 0;
+  color: var(--color-dark-500);
+  display: flex;
+  flex-flow: column;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+```
+
+Next we have a few color changes in `::selection` & `::moz-selection`
+
+```
+::selection {
+  background: var(--color-dark-500);
+}
+::-moz-selection{
+  background: var(--color-dark-50);
+}
+```
+Now scroll down to the `.p` tag and delete `@include mid-break` block.
+In that `.p` change the `margin` to be `0`. Now in the `ol` & `ul`:
+
+```
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+```
+*Note: list-style is the attribute that removes the ugly underline*
+
+Finally our last change is the `a` tag:
+
+```
+a {
+  color: var(--color-dark-500);
+}
+```
+*Note: keep focus and active as is.*
+
+Now that we are done with our globals, navigate to `colors.scss` in the same directory.
+Navigate to the very bottom but keep your cursor inside of the {} code block. Add the following
+code block to the list
+
+```
+// BRAND COLORS
+  --color-dark-50: rgba(243, 243, 243, 1);
+  --color-dark-60: rgba(237, 236, 238, 1);
+  --color-dark-500: rgba(19, 17, 24, 1);
+  --color-dark-500-5: rgba(19, 17, 24, 0.05);
+  --color-white-500: rgba(255, 255, 255, 1);
+  --color-white-500-20: rgba(255, 255, 255, 0.2);
+  --color-gray-500: rgba(164, 161, 170, 1);
+  --color-green-500: rgba(60, 209, 57, 1);
+```
+Now navigate to `types.scss` remove margin from every block, as we will be making this a custom design.
+`h4` is going to be used alot, so we will add custom styles to it.
+
+```
+%h4 {
+  font-size: 30px;
+  line-height: 43px;
+  font-weight: 400;
+  letter-spacing: 0em;
+}
+```
+*Note: leave the* `@include mid-break` *alone*
+
+Time to utilize our new font in our `layout.tsx` in `src/app/layout.tsx`
+
+`import { Jost } from 'next/font/google'`
+
+Now its time to initialize our font as a variable:
+```
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-jost',
+})
+```
+
+Now in our body tag we will give it a class name as
+
+`<body className={jost.variable}>`
+
+Below you will notice a `{children}` make sure to wrap that in `<main>` and add the `className` like so:
+
+```
+<main className='main'>{children}<main>
+```
+
+# Fixing our linter
+
+If you have prettier installed, you might be noticing some linting issues.
+Use the keyboard shortcut `ctrl-p` on windows or `cmd-p` if you are on mac and type in the search bar:
+
+`eslintrc`
+
+You could also navigate to this file in your root, however its worth mentioning the keyboard shortcut.
+You need to add the `rules` code block to our `module.exports`
+
+```
+module.exports = {
+  root: true,
+  extends: ['plugin:@next/next/recommended', '@payloadcms'],
+  ignorePatterns: ['**/payload-types.ts'],
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+  },
+}
+```
+*Note: This is the full code for this file.*
+
+Now Adrian from JSM has been kind enough to include assets to build out the `Tech Haven` brand as we follow along with his tutorial.
+I will be copying and following it 100% in this written guide. You can download his public folder assets at [this link](https://github.com/adrianhajdin/ecommerce/blob/main/code.md)
+
+Also If you have not done so yet, make sure to rate star this project by [clicking here](https://github.com/adrianhajdin/ecommerce) and clicking the star in the upper right hand corner underneath your profile icon.
+Without him making this excellent video I would not be writing this blog post, which is in no way sponsored by JSM. In the spirit of gratitude for his work, I will go ahead and provide you with [this link](https://tinyurl.com/5d56khr8)
+Here you can buy his program to fully learn Next JS and It's a fantastic value.
+
+Back to our tutorial
+
+## Delete your public folder
+
+Replace your public folder with the JSM Public folder. It comes with Assets & Icons that we will need for this project. It even includes the product collections images so this will be a critical step if you do not have a list of products ready to go.
+My personal plan will be to fully setup this website as Adrian would, then go back through it, establish the products I would like to sell, and then replace these images, descriptions etc to make it work with my stores theme.
+
+# Understanding payloads terms
+
+If you navigate to the `../app/` folder you will notice that we have uniquely named folders such as:
+
+```
+_block
+_components
+_heros
+_providers
+_utilities
+```
+
+These folders correlate with our payload `collections`. On [payloads docs](https://payloadcms.com/docs/configuration/collections) it reads:
+
+*Payload Collections are defined through configs of their own, and you can define as many as your application needs.
+Each Collection will scaffold a new collection automatically in your database of choice, based on fields that you define.
+It's often best practice to write your Collections in separate files and then import them into the main Payload config.*
+
+You can think of collections as `"database collections"` where each one has a specific url, fields, labels, admin etc as shown on the documentation.
+
+Next, read about [Globals](https://payloadcms.com/docs/configuration/globals):
+
+*Global configs are in many ways similar to Collections.
+The big difference is that Collections will potentially contain many documents,
+while a Global is a "one-off". Globals are perfect for things like header nav,
+site-wide banner alerts, app-wide localized strings, and other "global" data that your site or app might rely on.
+As with Collection configs, it's often best practice to write your Globals in separate files and then import them into the main Payload config.*
+
+Now currently we are at 27:43 in our video tutorial & in part three of this tutorial we will modify our globals, and start styling our project.
