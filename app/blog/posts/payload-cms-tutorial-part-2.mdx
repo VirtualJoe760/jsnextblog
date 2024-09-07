@@ -31,7 +31,34 @@ We will append the following variables:
 
 Right now we will access our Database URI via your payload project and navigating to the Database tab inbetween Overview and File storage as shown below.
 
+
 ![Database URI SS](https://i.imgur.com/izgmPDa.jpeg)
 
-Delete the data attached to those variables and we will append them at a later time.
+Copy the Mongo Connection String and paste it in to your .env file as the 
 
+`DATABASE_URI=`.
+
+Next you can choose your Payload_Secret do something like:
+
+`PAYLOAD_SECRET=speakuj_custom_secret`
+
+Now we can go ahead and run our project in the developer environment with:
+
+`npm run dev`
+
+## Admin user & seeding database
+
+Congrats! You have your development server up and running. It should look like the page below.
+
+![Payload Dashboard](https://i.imgur.com/eoqLepb.jpeg)
+
+Click go to Dashboard and now we can actually create our first admin user through our development environment... SO COOL!
+
+For your `roll` make sure you select `admin.` Purchases can be left blank.
+
+Congrats! This is your first look at the admin dashboard. There is a fantastic todo list as soon as you see the page below. Click the `Seed your database` and at this point if you go back to htt://localhost:3000
+you can see the beautiful hero image and products, with their pages if you scroll down. Click [Shop Now](http://localhost:3000/products) to see all products. Note: if you are not hosting on localhost:3000, that link will not work.
+
+As you click around you might notice the website feels a little slow, this is just in development. Your products, cart and database are ready to roll. Payment will not work until we setup stripe which is coming soon.
+
+Now in part three we will be setting up the codebase and continuing on our journey with Payload CMS.
