@@ -8,6 +8,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 import Script from 'next/script'
+import { MDXProvider } from '@mdx-js/react'
+import TweetEmbed from './components/TweetEmbed'
+import MDXWrapper from './components/MDXWrapper'
 
 
 export const metadata: Metadata = {
@@ -44,6 +47,11 @@ export const metadata: Metadata = {
   },
 };
 
+const components = {
+  TweetEmbed,
+};
+
+
 const cx = (...classes) => classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
@@ -66,6 +74,7 @@ export default function RootLayout({
         src={`https://www.googletagmanager.com/gtag/js?id=G-HW5D5MZCMC`}
         >
         </Script>
+        {/* Google Analytics */}
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -74,9 +83,16 @@ export default function RootLayout({
             gtag('config', 'G-HW5D5MZCMC');
           `}
         </Script>
+        {/* Twitter Embed */}
+        {/* Twitter Embed Script */}
+        <Script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charSet="utf-8"
+        />
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
-          {children}
+          <MDXWrapper>{children}</MDXWrapper>
           <Footer />
           <Analytics />
           <SpeedInsights />

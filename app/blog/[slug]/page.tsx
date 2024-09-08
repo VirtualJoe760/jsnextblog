@@ -6,7 +6,6 @@ import { baseUrl } from 'app/sitemap'
 
 
 
-
 export async function generateStaticParams() {
   let posts = getBlogPosts()
   return posts.map((post) => ({
@@ -103,7 +102,6 @@ export default function Blog({ params }) {
         </div>
         <article className="prose">
           <CustomMDX source={post.content} />
-        
         </article>
       </section>
     </>
